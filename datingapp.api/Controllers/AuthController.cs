@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using datingapp.api.Data;
 using datingapp.api.Dtos;
 using datingapp.api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace datingapp.api.Controllers
 {
+  
     [Route("api/[controller]")]
     [ApiController]
 
@@ -39,6 +41,7 @@ userName=UsertoRegisterDto.UserName
    return StatusCode(201);
 
 }
+
 [HttpPost("Login")]
 public async Task<IActionResult> login(UserForLoginDto userForloginDto)
 {
@@ -61,11 +64,14 @@ var tokenDescropter= new SecurityTokenDescriptor
 };
 var tokenhandler = new JwtSecurityTokenHandler();
 var token =tokenhandler.CreateToken(tokenDescropter);
-return Ok(new {token=tokenhandler.WriteToken(token)});
+return Ok(new {
+                token = tokenhandler.WriteToken(token)
+            });
 }
 
 
 
 
     }
+
 }

@@ -8,6 +8,12 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_sevices/Auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorTnterceptorProvider } from './_sevices/Error.Interceptor';
+import { AlertifyService } from './_sevices/alertify.service';
+import { BsDropdownModule } from 'ngx-bootstrap';
+
+
+
 
 @NgModule({
    declarations: [
@@ -19,10 +25,13 @@ import { RegisterComponent } from './register/register.component';
    imports: [
       BrowserModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
-      AuthService
+      AuthService,
+      ErrorTnterceptorProvider,
+      AlertifyService
    ],
    bootstrap: [
       AppComponent
